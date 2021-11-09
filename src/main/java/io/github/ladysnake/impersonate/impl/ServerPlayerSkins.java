@@ -111,16 +111,6 @@ public final class ServerPlayerSkins {
      * @param signature skin texture signature
      */
     private static void setPlayerSkin(ServerPlayerEntity player, @Nullable String value, @Nullable String signature) {
-        PropertyMap realProperties = Impersonator.get(player).getActualProfile().getProperties();
-        PropertyMap editedProperties = Impersonator.get(player).getEditedProfile().getProperties();
-        realProperties.removeAll("textures");
-        editedProperties.removeAll("textures");
-
-        if (value != null && signature != null) {
-            realProperties.put("textures", new Property("textures", value, signature));
-            editedProperties.put("textures", new Property("textures", value, signature));
-        }
-
         // Reloading is needed in order to see the new skin
         reloadSkin(player);
     }
